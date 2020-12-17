@@ -10,8 +10,28 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+      <nav class="navbar navbar-default">
+          <div class="container">
+              <div class="navbar-header">
+                  <%= link_to "Tasktime", root_path, class: "navbar-brand" %>>
+              </div>
+              <ul class="nav navbar-nav navbar-right">
+                  <% if current_user.present? %>
+                      <li><%= link_to "Sing Out", destroy_user_session_path, method: :delete %></li>
+                  <% else %>
+                      <li><%= link_to "Log In", new_user_session_path %></li>
+                      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+                  <% end %>
+              </ul>
+              <% if current_user.present? %>
+                  <li><%= link_to "Create Task", new_task_path, class: "navbar-text navbar-link" %></li>
+              <% end %>
+          </div>
+      </nav>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <div class="container">
+          <%= yield %>
+      </div>
   </body>
 </html>
