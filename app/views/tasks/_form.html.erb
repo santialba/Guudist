@@ -1,0 +1,7 @@
+<%= simple_form_for @task do |f| %>
+    <%= f.input :title, label: 'Task' %>
+    <%= f.input :description %>
+    <%#= f.input :state, as: :boolean %>
+    <%= f.input :weight, collection: 0..5 %>
+    <%= f.button :submit %>
+<% end %>
