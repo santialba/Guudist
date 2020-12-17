@@ -21,6 +21,12 @@ class TasksController < ApplicationController
     end
   end
 
+  def complete
+    find_task
+    @task.update_attribute(:completed_at, Time.now)
+    redirect_to root_path
+  end
+
   def new
     @task = current_user.tasks.build
   end
