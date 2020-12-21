@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   def complete
     find_task
     @task.update_attribute(:completed_at, Time.now)
+    @task.done!
     redirect_to root_path
   end
 
