@@ -8,9 +8,7 @@ class TasksController < ApplicationController
   end
 
   def show
-  end
-
-  def edit
+    render json: {}, status: 401 if current_user.tasks.exclude?(@task)
   end
 
   def update
@@ -39,11 +37,6 @@ class TasksController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def destroy
-    @task.destroy
-    redirect_to root_path
   end
 
   private
