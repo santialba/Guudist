@@ -1,10 +1,12 @@
 <% if user_signed_in? %>
     <% @tasks.each do |task| %>
-        <h2><%= link_to task.title, user_task_path(current_user.id, task.id) %></h2>
-        <p><%= task.description %></p>
+        <div class="row item">
+            <h2><%= link_to task.title, user_task_path(current_user.id, task.id) %></h2>
+            <p><%= task.description %></p>
         <% task.tags.each do |tag| %>
-            <p><%= tag.name %></p>
+            <%= link_to tag.name, user_tasks_url(current_user.id, {tag_id: tag.id}), class: 'badge badge-primary' %>
         <% end %>
+        </div>
     <% end %>
 <% else %>
     <%= render 'welcome_page' %>

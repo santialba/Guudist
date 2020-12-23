@@ -1,39 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <title>Guudist</title>
-      <%= csrf_meta_tags %>
-      <%= csp_meta_tag %>
-      <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-           <!--
-           <script src="https://kit.fontawesome.com/9cf8c0e82b.js" crossorigin="anonymous"></script> -->
-           <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-           <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <head>
+        <title>Guudist</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-  <body>
-      <nav class="navbar navbar-default">
-          <div class="container">
-              <div class="navbar-header">
-                  <%= link_to "Tasktime", root_path, class: "navbar-brand" %>
-              </div>
-              <ul class="nav navbar-nav navbar-right">
-                  <% if current_user.present? %>
-                      <li><%= link_to "Sing Out", destroy_user_session_path, method: :delete %></li>
-                  <% else %>
-                      <li><%= link_to "Log In", new_user_session_path %></li>
-                      <li><%= link_to "Sign Up", new_user_registration_path %></li>
-                  <% end %>
-              </ul>
-              <% if current_user.present? %>
-                  <li><%= link_to "Create Task", new_task_path, class: "navbar-text navbar-link" %></li>
-              <% end %>
-          </div>
-      </nav>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <div class="container">
-          <%= yield %>
-      </div>
-  </body>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <%= link_to "Guudist", root_path, class: "navbar-brand" %>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <% if current_user.present? %>
+                        <li><%= link_to "Create Task", new_user_task_path(current_user.id) %></li>
+                        <li><%= link_to "Create Tag", new_user_tag_path(current_user.id) %></li>
+                        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+                    <% end %>
+                </ul>
+            </div>
+        </nav>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <div class="container">
+            <%= yield %>
+        </div>
+    </body>
 </html>

@@ -2,7 +2,5 @@
       <h2><%= @task.title%></h2>
       <p><%= @task.description %></p>
 
-      <div class='col-md-4 cd-md-offset-4'>
-          <%= link_to "Back", root_path %>
-      </div>
+      <%= link_to 'Completed', complete_user_task_path, method: :patch, class: "btn btn-success" %>
 </div>

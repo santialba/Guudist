@@ -1,7 +1,8 @@
-<%= simple_form_for @task do |f| %>
+<%= simple_form_for @task, url:  user_tasks_path   do |f| %>
     <%= f.input :title, label: 'Task' %>
     <%= f.input :description %>
-    <%#= f.input :state, as: :boolean %>
-    <%= f.input :weight, collection: 0..5 %>
-    <%= f.button :submit %>
+    <%= f.input :weight, collection: 0..5, default: 0 %>
+    <%= f.input :deadline_at, as: :date, html5: true %>
+    <%= f.input :tag_ids, collection: current_user.tags, include_blank: false, include_hidden: false, input_html: { multiple: true }, as: :check_boxes %>
+    <%= f.button :submit, class: "btn btn-success" %>
 <% end %>
