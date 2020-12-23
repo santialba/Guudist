@@ -1,24 +1,35 @@
 # README
+## Guudist
+Manage your tasks in the best way.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Prerequisites
 
-Things you may want to cover:
+The setups steps expect following tools installed on the system.
 
-* Ruby version
+    Ruby 2.7.2
+    Rails 6.0.3.4
+    Yarn 1.22.10
+    
+### 1. Check out the repository
 
-* System dependencies
+`git clone git@github.com:santialba/Guudist.git`
 
-* Configuration
+### 2. Initialize Rails app
+    yarn install --check-files
+    rake db:migrate
+    bundle install
 
-* Database creation
+### 3. Run the test suite
 
-* Database initialization
+`rspec spec`
 
-* How to run the test suite
+### 4. Start the Rails server
 
-* Services (job queues, cache servers, search engines, etc.)
+You can start the rails server using the command given below.
 
-* Deployment instructions
+`rails s`
 
-* ...
+And now you can visit the site with the URL [http://localhost:3000](http://localhost:3000/)
+
+
+
