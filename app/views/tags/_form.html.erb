@@ -1,0 +1,4 @@
+<%= simple_form_for @tag, url:  user_tags_path do |f| %>
+    <%= f.input :name, label: 'Tag' %>
+    <%= f.button :submit, class: "btn btn-success" %>
+<% end %>
