@@ -8,20 +8,11 @@ class TasksController < ApplicationController
   end
 
   def show
-    render json: {}, status: 401 if current_user.tasks.exclude?(@task)
-  end
-
-  def update
-    if @task.update(task_params)
-      redirect_to task_path(@task)
-    else
-      render 'edit'
-    end
+    render json: {}, status: 401 if !user_signed_in? || current_user.tasks.exclude?(@task)
   end
 
   def complete
     find_task
-    @task.update_attribute(:completed_at, Time.now)
     @task.done!
     redirect_to root_path
   end
