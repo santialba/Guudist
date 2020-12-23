@@ -3,8 +3,11 @@ class Task < ApplicationRecord
 
   belongs_to :user
   has_and_belongs_to_many :tags
+  accepts_nested_attributes_for :tags
 
-  validates :tags, length: { maximum: 3 }
+  validates :title, presence: true
+  validates :deadline_at, presence: true
+  validates :tag_ids, length: { maximum: 3 }
 
   aasm column: 'state' do
     state :to_do,
