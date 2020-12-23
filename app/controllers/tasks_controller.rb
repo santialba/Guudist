@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
-  before_action :find_task, only: [:show, :edit, :update, :destroy]
+  before_action :find_task, only: %i[show edit update destroy]
 
   def index
-    if user_signed_in?
-      @tasks = Task.filter({user_id: current_user.id,
-                            init_at: Time.now,
-                            finish_at: Time.now + 7.days,
-                            state: 'to_do',
-                            tag_id: params['tag_id']})
-    end
+    return unless user_signed_in?
+
+    @tasks = Task.filter({ user_id: current_user.id,
+                           init_at: Time.now,
+                           finish_at: Time.now + 7.days,
+                           state: 'to_do',
+                           tag_id: params['tag_id'] })
   end
 
   def show
