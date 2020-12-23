@@ -3,7 +3,11 @@ class TasksController < ApplicationController
 
   def index
     if user_signed_in?
-      @tasks = Task.where(:user_id => current_user.id).order("created_at DESC")
+      @tasks = Task.filter({user_id: current_user.id,
+                            init_at: Time.now,
+                            finish_at: Time.now + 7.days,
+                            state: 'to_do',
+                            tag_id: params['tag_id']})
     end
   end
 
